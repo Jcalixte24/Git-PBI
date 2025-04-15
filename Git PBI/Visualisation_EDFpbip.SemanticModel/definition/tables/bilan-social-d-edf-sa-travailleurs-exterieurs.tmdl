@@ -1,0 +1,89 @@
+table bilan-social-d-edf-sa-travailleurs-exterieurs
+	lineageTag: 7b7a8b09-1e3f-4022-a01d-59f16f9948b5
+
+	column Année
+		dataType: int64
+		formatString: 0
+		lineageTag: 96b49506-e138-404b-ad4e-cb5347837da2
+		summarizeBy: sum
+		sourceColumn: Année
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Perimètre juridique'
+		dataType: string
+		lineageTag: 4cc499a0-ce7e-44d1-a81a-3e576c78008d
+		summarizeBy: none
+		sourceColumn: Perimètre juridique
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Perimètre spatial'
+		dataType: string
+		lineageTag: daade880-27f8-4926-be45-2a0f21052546
+		summarizeBy: none
+		sourceColumn: Perimètre spatial
+
+		annotation SummarizationSetBy = Automatic
+
+	column Indicateur
+		dataType: string
+		lineageTag: 476a47ed-9f23-4025-b9d9-c0a97e0567d6
+		summarizeBy: none
+		sourceColumn: Indicateur
+
+		annotation SummarizationSetBy = Automatic
+
+	column Collège
+		dataType: string
+		lineageTag: ad7dbf04-2fea-46a0-adc0-a67339ba2226
+		summarizeBy: none
+		sourceColumn: Collège
+
+		annotation SummarizationSetBy = Automatic
+
+	column Genre
+		dataType: string
+		lineageTag: 5556e9cb-f88c-4f45-ac4a-2eca766bffe8
+		summarizeBy: none
+		sourceColumn: Genre
+
+		annotation SummarizationSetBy = Automatic
+
+	column Valeur
+		dataType: string
+		lineageTag: 0544966f-6e70-46bf-850f-7dd2f192884d
+		summarizeBy: none
+		sourceColumn: Valeur
+
+		annotation SummarizationSetBy = Automatic
+
+	column Unité
+		dataType: string
+		lineageTag: 9c8dc2ef-c68e-4d5a-80fd-53429634008d
+		summarizeBy: none
+		sourceColumn: Unité
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Chapitre du bilan social'
+		dataType: string
+		lineageTag: c60da6c8-379b-4fe8-b510-517980befc70
+		summarizeBy: none
+		sourceColumn: Chapitre du bilan social
+
+		annotation SummarizationSetBy = Automatic
+
+	partition bilan-social-d-edf-sa-travailleurs-exterieurs = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\djlye\Downloads\bilan-social-d-edf-sa-travailleurs-exterieurs.csv"),[Delimiter=";", Columns=14, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"En-têtes promus" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Année", Int64.Type}, {"Perimètre juridique", type text}, {"Perimètre spatial", type text}, {"Spatial perimeter", type text}, {"Indicateur", type text}, {"Indicator", type text}, {"Collège", type text}, {"Employee category", type text}, {"Genre", type text}, {"Gender", type text}, {"Valeur", type text}, {"Unité", type text}, {"Unit", type text}, {"Chapitre du bilan social", type text}}),
+				    #"Colonnes supprimées" = Table.RemoveColumns(#"Type modifié",{"Indicator", "Employee category", "Gender", "Unit", "Spatial perimeter"})
+				in
+				    #"Colonnes supprimées"
+
+	annotation PBI_ResultType = Table
+

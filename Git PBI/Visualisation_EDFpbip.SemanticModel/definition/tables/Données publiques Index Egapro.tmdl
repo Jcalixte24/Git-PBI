@@ -1,0 +1,163 @@
+table 'Données publiques Index Egapro'
+	lineageTag: 18284406-0a74-49d3-9a2b-04819bf4a0c6
+
+	column Année
+		dataType: int64
+		formatString: 0
+		lineageTag: f1b32f21-ba96-4e42-a8d0-5cb0e3be3869
+		summarizeBy: sum
+		sourceColumn: Année
+
+		annotation SummarizationSetBy = Automatic
+
+	column Structure
+		dataType: string
+		lineageTag: da0b371e-192e-4bf5-81f3-f226ed57021d
+		summarizeBy: none
+		sourceColumn: Structure
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tranche d''effectifs'
+		dataType: string
+		lineageTag: 3229838b-e96d-4013-ac35-699eba33f310
+		summarizeBy: none
+		sourceColumn: Tranche d'effectifs
+
+		annotation SummarizationSetBy = Automatic
+
+	column SIREN
+		dataType: int64
+		formatString: 0
+		lineageTag: 1bf65aad-d6bb-4a59-aed9-7884841bf6b8
+		summarizeBy: sum
+		sourceColumn: SIREN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Raison Sociale'
+		dataType: string
+		lineageTag: 6be2fa01-b508-4b23-afc8-7f23ddc48784
+		summarizeBy: none
+		sourceColumn: Raison Sociale
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nom UES'
+		dataType: string
+		lineageTag: 924ca796-5ddf-48c3-a0e9-4688f486fb15
+		summarizeBy: none
+		sourceColumn: Nom UES
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Entreprises UES (SIREN)'
+		dataType: string
+		lineageTag: f0b7d134-c6da-46f5-9001-3892c42ac7f7
+		summarizeBy: none
+		sourceColumn: Entreprises UES (SIREN)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Région
+		dataType: string
+		lineageTag: 356b3007-ce5a-4d25-b0a9-58e82c3bd781
+		summarizeBy: none
+		sourceColumn: Région
+
+		annotation SummarizationSetBy = Automatic
+
+	column Département
+		dataType: string
+		lineageTag: ff3a830d-37bc-4195-b9df-af1e25f1d7d6
+		summarizeBy: none
+		sourceColumn: Département
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pays
+		dataType: string
+		lineageTag: 1a7298d2-93c0-4b71-8132-9219e6255cf4
+		summarizeBy: none
+		sourceColumn: Pays
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Code NAF'
+		dataType: string
+		lineageTag: 07c0bd64-baff-4ad8-96ae-a9cc52a5fa4e
+		summarizeBy: none
+		sourceColumn: Code NAF
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Note Ecart rémunération'
+		dataType: string
+		lineageTag: 4fbfd5f2-8681-4ee3-95ec-73348925a568
+		summarizeBy: none
+		sourceColumn: Note Ecart rémunération
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Note Ecart taux d''augmentation (hors promotion)'
+		dataType: string
+		lineageTag: 9eeb53d2-aca1-4962-8993-eba2eab4700f
+		summarizeBy: none
+		sourceColumn: Note Ecart taux d'augmentation (hors promotion)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Note Ecart taux de promotion'
+		dataType: string
+		lineageTag: 0cf246cc-b4c2-4d1f-9c72-3cdef84ee106
+		summarizeBy: none
+		sourceColumn: Note Ecart taux de promotion
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Note Ecart taux d''augmentation'
+		dataType: string
+		lineageTag: 830255ee-85c1-4710-a743-1fe1cb152c3d
+		summarizeBy: none
+		sourceColumn: Note Ecart taux d'augmentation
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Note Retour congé maternité'
+		dataType: string
+		lineageTag: c275088b-32a6-483a-890d-a6c3b924cb5b
+		summarizeBy: none
+		sourceColumn: Note Retour congé maternité
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Note Hautes rémunérations'
+		dataType: int64
+		formatString: 0
+		lineageTag: 68bf452b-69ad-4944-8a56-2527e805080c
+		summarizeBy: sum
+		sourceColumn: Note Hautes rémunérations
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Note Index'
+		dataType: string
+		lineageTag: 5d3293a3-5173-4ee2-9761-f759b2264794
+		summarizeBy: none
+		sourceColumn: Note Index
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Données publiques Index Egapro' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\djlye\Downloads\index-egalite-fh.xlsx"), null, true),
+				    #"Données publiques Index Egapro_Sheet" = Source{[Item="Données publiques Index Egapro",Kind="Sheet"]}[Data],
+				    #"En-têtes promus" = Table.PromoteHeaders(#"Données publiques Index Egapro_Sheet", [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Année", Int64.Type}, {"Structure", type text}, {"Tranche d'effectifs", type text}, {"SIREN", Int64.Type}, {"Raison Sociale", type text}, {"Nom UES", type text}, {"Entreprises UES (SIREN)", type text}, {"Région", type text}, {"Département", type text}, {"Pays", type text}, {"Code NAF", type text}, {"Note Ecart rémunération", type any}, {"Note Ecart taux d'augmentation (hors promotion)", type any}, {"Note Ecart taux de promotion", type any}, {"Note Ecart taux d'augmentation", type any}, {"Note Retour congé maternité", type any}, {"Note Hautes rémunérations", Int64.Type}, {"Note Index", type any}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_ResultType = Table
+

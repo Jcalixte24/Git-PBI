@@ -1,0 +1,36 @@
+model Model
+	culture: fr-FR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: fr-FR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+/// Erreurs dans les requêtes qui ont été chargées sur 15/04/2025 13:09:00.
+queryGroup 'Erreurs des requêtes – 15/04/2025 13:09:00'
+
+	annotation PBI_QueryGroupOrder = 0
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.141.1558.0 (25.03)+75b5f06a991f8f8a8a4d6b6fcd0f66e1ec2d6fdc
+
+annotation PBI_QueryOrder = ["bilan-social-d-edf-sa-remuneration-et-promotions","bilan-social-d-edf-sa-formation","bilan-social-d-edf-sa-droit-du-travail","bilan-social-d-edf-sa-autres-conditions-de-travail","bilan-social-d-edf-sa-effectifs-et-repartition-par-age-statut-et-sexe","Données publiques Index Egapro","Erreurs dans Données publiques Index Egapro","ratios_inpi_bce","bilan-social-d-edf-sa-travailleurs-exterieurs","bilan-social-d-edf-sa-salaries-en-situation-de-handicap","bilan-social-d-edf-sa-absenteisme"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table bilan-social-d-edf-sa-remuneration-et-promotions
+ref table bilan-social-d-edf-sa-formation
+ref table bilan-social-d-edf-sa-droit-du-travail
+ref table bilan-social-d-edf-sa-autres-conditions-de-travail
+ref table bilan-social-d-edf-sa-effectifs-et-repartition-par-age-statut-et-sexe
+ref table 'Données publiques Index Egapro'
+ref table ratios_inpi_bce
+ref table DateTableTemplate_02b6c8c9-1a67-4a5d-816d-8178dd74b1fe
+ref table LocalDateTable_3934ca81-a5e2-47d9-a257-09425d02e643
+ref table bilan-social-d-edf-sa-travailleurs-exterieurs
+ref table bilan-social-d-edf-sa-salaries-en-situation-de-handicap
+ref table bilan-social-d-edf-sa-absenteisme
+
+ref cultureInfo fr-FR
+

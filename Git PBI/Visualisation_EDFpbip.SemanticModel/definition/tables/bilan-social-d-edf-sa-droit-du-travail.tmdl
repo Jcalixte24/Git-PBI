@@ -1,0 +1,76 @@
+table bilan-social-d-edf-sa-droit-du-travail
+	lineageTag: 951940bc-719b-4d8a-9cb1-3badb8d5eaec
+
+	column Année
+		dataType: int64
+		formatString: 0
+		lineageTag: deb14b46-98ec-403c-bfc9-77f5faa5abd2
+		summarizeBy: sum
+		sourceColumn: Année
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Perimètre juridique'
+		dataType: string
+		lineageTag: 332a946a-d4eb-490b-aa37-170fe49db203
+		summarizeBy: none
+		sourceColumn: Perimètre juridique
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Perimètre spatial'
+		dataType: string
+		lineageTag: 9bb5d93e-6c37-42bc-ac2d-0c0652461747
+		summarizeBy: none
+		sourceColumn: Perimètre spatial
+
+		annotation SummarizationSetBy = Automatic
+
+	column Indicateur
+		dataType: string
+		lineageTag: e723f9b9-7d97-44bf-850c-1b95afa0a0f7
+		summarizeBy: none
+		sourceColumn: Indicateur
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Type de recours'
+		dataType: string
+		lineageTag: f4f4e48f-7714-45b8-b8a4-e3c2bd4b0b76
+		summarizeBy: none
+		sourceColumn: Type de recours
+
+		annotation SummarizationSetBy = Automatic
+
+	column Valeur
+		dataType: int64
+		formatString: 0
+		lineageTag: ffc29cc6-ccae-4ba4-b401-4605f9812991
+		summarizeBy: sum
+		sourceColumn: Valeur
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Chapitre du bilan social'
+		dataType: string
+		lineageTag: e3338a07-c71f-4ac6-8b52-84b9376aa8c2
+		summarizeBy: none
+		sourceColumn: Chapitre du bilan social
+
+		annotation SummarizationSetBy = Automatic
+
+	partition bilan-social-d-edf-sa-droit-du-travail = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\djlye\Documents\bilan-social-d-edf-sa-droit-du-travail.xlsx"), null, true),
+				    Feuil1_Sheet = Source{[Item="Feuil1",Kind="Sheet"]}[Data],
+				    #"En-têtes promus" = Table.PromoteHeaders(Feuil1_Sheet, [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Année", Int64.Type}, {"Perimètre juridique", type text}, {"Perimètre spatial", type text}, {"Indicateur", type text}, {"Type de recours", type text}, {"Valeur", Int64.Type}, {"Chapitre du bilan social", type text}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

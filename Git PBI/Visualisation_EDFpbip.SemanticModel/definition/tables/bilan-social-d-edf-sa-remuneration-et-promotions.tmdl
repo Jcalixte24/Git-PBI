@@ -1,0 +1,92 @@
+table bilan-social-d-edf-sa-remuneration-et-promotions
+	lineageTag: a70456be-91ea-4ae0-8b1c-2cb005956f79
+
+	column Année
+		dataType: int64
+		formatString: 0
+		lineageTag: 5aa5c43e-063a-4844-9c0f-39849ee17378
+		summarizeBy: sum
+		sourceColumn: Année
+
+		annotation SummarizationSetBy = Automatic
+
+	column Indicateur
+		dataType: string
+		lineageTag: 2d6a50df-fc82-45a8-96d7-2bbb5a8a6619
+		summarizeBy: none
+		sourceColumn: Indicateur
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Type de contrat'
+		dataType: string
+		lineageTag: 1a7181f3-6746-4583-a890-5f56ffcc338d
+		summarizeBy: none
+		sourceColumn: Type de contrat
+
+		annotation SummarizationSetBy = Automatic
+
+	column Collège
+		dataType: string
+		lineageTag: 5c19ac5b-df0d-4901-bd8f-28943b046a09
+		summarizeBy: none
+		sourceColumn: Collège
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Plage M3E'
+		dataType: string
+		lineageTag: 7c899081-bd90-479c-9648-d435ebff4e2e
+		summarizeBy: none
+		sourceColumn: Plage M3E
+
+		annotation SummarizationSetBy = Automatic
+
+	column Genre
+		dataType: string
+		lineageTag: deaefcad-c24b-4daf-a6f0-5166530c7d0e
+		summarizeBy: none
+		sourceColumn: Genre
+
+		annotation SummarizationSetBy = Automatic
+
+	column Valeur
+		dataType: int64
+		formatString: 0
+		lineageTag: 5f3119d6-8a06-48b3-9529-d1d5f13d5f1c
+		summarizeBy: sum
+		sourceColumn: Valeur
+
+		annotation SummarizationSetBy = Automatic
+
+	column Unité
+		dataType: string
+		lineageTag: 95adf45f-f9d3-415f-928e-6c4392913e4f
+		summarizeBy: none
+		sourceColumn: Unité
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Chapitre du bilan social'
+		dataType: string
+		lineageTag: 57c74e98-a26e-4804-aa3d-76f6c2bfef3a
+		summarizeBy: none
+		sourceColumn: Chapitre du bilan social
+
+		annotation SummarizationSetBy = Automatic
+
+	partition bilan-social-d-edf-sa-remuneration-et-promotions = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\djlye\Documents\bilan-social-d-edf-sa-remuneration-et-promotions.xlsx"), null, true),
+				    Feuil1_Sheet = Source{[Item="Feuil1",Kind="Sheet"]}[Data],
+				    #"En-têtes promus" = Table.PromoteHeaders(Feuil1_Sheet, [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Année", Int64.Type}, {"Indicateur", type text}, {"Type de contrat", type text}, {"Collège", type text}, {"Plage M3E", type text}, {"Genre", type text}, {"Valeur", Int64.Type}, {"Unité", type text}, {"Chapitre du bilan social", type text}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

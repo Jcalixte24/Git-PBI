@@ -1,0 +1,152 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 26
+          },
+          "nodeIndex": "bilan-social-d-edf-sa-autres-conditions-de-travail",
+          "nodeLineageTag": "f89ea0f8-20e9-498d-92f0-a27b3b113260",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 284,
+            "y": 26
+          },
+          "nodeIndex": "bilan-social-d-edf-sa-droit-du-travail",
+          "nodeLineageTag": "951940bc-719b-4d8a-9cb1-3badb8d5eaec",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 568,
+            "y": 0
+          },
+          "nodeIndex": "bilan-social-d-edf-sa-effectifs-et-repartition-par-age-statut-et-sexe",
+          "nodeLineageTag": "5b2401b0-acef-459f-a14c-94e216da8dd4",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 852,
+            "y": 14
+          },
+          "nodeIndex": "bilan-social-d-edf-sa-formation",
+          "nodeLineageTag": "9bc0b543-1670-4bd0-8cb1-7ae8ff6284c6",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1136,
+            "y": 2
+          },
+          "nodeIndex": "bilan-social-d-edf-sa-remuneration-et-promotions",
+          "nodeLineageTag": "a70456be-91ea-4ae0-8b1c-2cb005956f79",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1420,
+            "y": 0
+          },
+          "nodeIndex": "Données publiques Index Egapro",
+          "nodeLineageTag": "18284406-0a74-49d3-9a2b-04819bf4a0c6",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1704,
+            "y": 0
+          },
+          "nodeIndex": "ratios_inpi_bce",
+          "nodeLineageTag": "8488d5a5-20b8-46f1-8891-0204d483fe88",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1988,
+            "y": 0
+          },
+          "nodeIndex": "bilan-social-d-edf-sa-travailleurs-exterieurs",
+          "nodeLineageTag": "7b7a8b09-1e3f-4022-a01d-59f16f9948b5",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2272,
+            "y": 0
+          },
+          "nodeIndex": "bilan-social-d-edf-sa-salaries-en-situation-de-handicap",
+          "nodeLineageTag": "3c70b436-e5e1-4c18-a340-09fb817a3c4c",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2556,
+            "y": 0
+          },
+          "nodeIndex": "bilan-social-d-edf-sa-absenteisme",
+          "nodeLineageTag": "7e6e3596-0feb-4360-a5a4-9b19d06aea37",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Toutes les tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Toutes les tables",
+  "defaultDiagram": "Toutes les tables"
+}

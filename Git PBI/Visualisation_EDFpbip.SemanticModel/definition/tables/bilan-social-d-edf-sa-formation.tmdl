@@ -1,0 +1,85 @@
+table bilan-social-d-edf-sa-formation
+	lineageTag: 9bc0b543-1670-4bd0-8cb1-7ae8ff6284c6
+
+	column Année
+		dataType: int64
+		formatString: 0
+		lineageTag: 0314c92f-51e1-4ac5-be6a-65808f261750
+		summarizeBy: sum
+		sourceColumn: Année
+
+		annotation SummarizationSetBy = Automatic
+
+	column Indicateur
+		dataType: string
+		lineageTag: 6ef29248-986f-4723-bd59-4ce01ae48417
+		summarizeBy: none
+		sourceColumn: Indicateur
+
+		annotation SummarizationSetBy = Automatic
+
+	column Collège
+		dataType: string
+		lineageTag: ae78d537-f25d-440b-9992-8ed7ebd28d1d
+		summarizeBy: none
+		sourceColumn: Collège
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Plage M3E'
+		dataType: string
+		lineageTag: c130e99d-4391-4bfc-bcc2-6b5602c39055
+		summarizeBy: none
+		sourceColumn: Plage M3E
+
+		annotation SummarizationSetBy = Automatic
+
+	column Genre
+		dataType: string
+		lineageTag: ed9d08f7-ad99-434c-8b08-5d2bc44f68a4
+		summarizeBy: none
+		sourceColumn: Genre
+
+		annotation SummarizationSetBy = Automatic
+
+	column Valeur
+		dataType: double
+		lineageTag: 7f7a3d6e-b877-40c1-a957-57eeb53af4c8
+		summarizeBy: sum
+		sourceColumn: Valeur
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Unité
+		dataType: string
+		lineageTag: 8e7e12c5-a2ce-4662-909e-100a7cc55ee7
+		summarizeBy: none
+		sourceColumn: Unité
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Chapitre du bilan social'
+		dataType: string
+		lineageTag: f9b7eb63-8e75-4e43-83a1-4da19fca3f44
+		summarizeBy: none
+		sourceColumn: Chapitre du bilan social
+
+		annotation SummarizationSetBy = Automatic
+
+	partition bilan-social-d-edf-sa-formation = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\djlye\Documents\bilan-social-d-edf-sa-formation.xlsx"), null, true),
+				    Feuil1_Sheet = Source{[Item="Feuil1",Kind="Sheet"]}[Data],
+				    #"En-têtes promus" = Table.PromoteHeaders(Feuil1_Sheet, [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Année", Int64.Type}, {"Indicateur", type text}, {"Collège", type text}, {"Plage M3E", type text}, {"Genre", type text}, {"Valeur", type number}, {"Unité", type text}, {"Chapitre du bilan social", type text}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

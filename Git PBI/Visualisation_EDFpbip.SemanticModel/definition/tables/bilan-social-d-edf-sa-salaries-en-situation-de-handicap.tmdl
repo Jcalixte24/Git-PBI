@@ -1,0 +1,146 @@
+table bilan-social-d-edf-sa-salaries-en-situation-de-handicap
+	lineageTag: 3c70b436-e5e1-4c18-a340-09fb817a3c4c
+
+	column Année
+		dataType: int64
+		formatString: 0
+		lineageTag: aa0d19e6-c136-429b-9dc2-92cd62e5ad7d
+		summarizeBy: sum
+		sourceColumn: Année
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Perimètre juridique'
+		dataType: string
+		lineageTag: 57b9da8c-cc93-4c6d-a26b-e46bc1944a53
+		summarizeBy: none
+		sourceColumn: Perimètre juridique
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Perimètre spatial'
+		dataType: string
+		lineageTag: 36299e29-aec1-4d81-bdd2-c0083c8ff414
+		summarizeBy: none
+		sourceColumn: Perimètre spatial
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Spatial perimeter'
+		dataType: string
+		lineageTag: d5f7bf0b-f03c-4ad7-9c20-892cb6cd178c
+		summarizeBy: none
+		sourceColumn: Spatial perimeter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Indicateur
+		dataType: string
+		lineageTag: 652cc73a-66ab-43c9-b02e-77a9208642b0
+		summarizeBy: none
+		sourceColumn: Indicateur
+
+		annotation SummarizationSetBy = Automatic
+
+	column Indicator
+		dataType: string
+		lineageTag: 765eef91-ee8a-4fe1-b5da-60eb8d942387
+		summarizeBy: none
+		sourceColumn: Indicator
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Type de contrat'
+		dataType: string
+		lineageTag: 56e56931-6921-4b88-bebb-a28427cac71e
+		summarizeBy: none
+		sourceColumn: Type de contrat
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Type of contract'
+		dataType: string
+		lineageTag: 12e40a90-f53d-4a11-bc6c-2c49d66fa6df
+		summarizeBy: none
+		sourceColumn: Type of contract
+
+		annotation SummarizationSetBy = Automatic
+
+	column Collège
+		dataType: string
+		lineageTag: 6863f01a-a104-4a59-a671-1ac9552c91eb
+		summarizeBy: none
+		sourceColumn: Collège
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Employee category'
+		dataType: string
+		lineageTag: fa21b9e7-6410-4872-93ad-e4585413d355
+		summarizeBy: none
+		sourceColumn: Employee category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Genre
+		dataType: string
+		lineageTag: c1ddd713-04ca-4726-b717-1a4040154c31
+		summarizeBy: none
+		sourceColumn: Genre
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 59d6bf6c-09ca-4c42-a260-37bc695fab4d
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column Valeur
+		dataType: string
+		lineageTag: bdc5b297-32bc-4b64-bf86-f21f29ee5b4f
+		summarizeBy: none
+		sourceColumn: Valeur
+
+		annotation SummarizationSetBy = Automatic
+
+	column Unité
+		dataType: string
+		lineageTag: 9cbacfa5-7ce3-432b-b11d-7e9d482a6f19
+		summarizeBy: none
+		sourceColumn: Unité
+
+		annotation SummarizationSetBy = Automatic
+
+	column Unit
+		dataType: string
+		lineageTag: 8ee3c2d1-0550-4fa4-9daf-ddf0ce899ffc
+		summarizeBy: none
+		sourceColumn: Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Chapitre du bilan social'
+		dataType: string
+		lineageTag: 31f7470f-308b-4851-b56f-46c871a07581
+		summarizeBy: none
+		sourceColumn: Chapitre du bilan social
+
+		annotation SummarizationSetBy = Automatic
+
+	partition bilan-social-d-edf-sa-salaries-en-situation-de-handicap = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\djlye\Downloads\bilan-social-d-edf-sa-salaries-en-situation-de-handicap.csv"),[Delimiter=";", Columns=16, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"En-têtes promus" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Année", Int64.Type}, {"Perimètre juridique", type text}, {"Perimètre spatial", type text}, {"Spatial perimeter", type text}, {"Indicateur", type text}, {"Indicator", type text}, {"Type de contrat", type text}, {"Type of contract", type text}, {"Collège", type text}, {"Employee category", type text}, {"Genre", type text}, {"Gender", type text}, {"Valeur", type text}, {"Unité", type text}, {"Unit", type text}, {"Chapitre du bilan social", type text}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

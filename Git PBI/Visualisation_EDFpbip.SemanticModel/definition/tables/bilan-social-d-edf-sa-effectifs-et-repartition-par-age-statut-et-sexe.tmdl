@@ -1,0 +1,116 @@
+table bilan-social-d-edf-sa-effectifs-et-repartition-par-age-statut-et-sexe
+	lineageTag: 5b2401b0-acef-459f-a14c-94e216da8dd4
+
+	column Année
+		dataType: int64
+		formatString: 0
+		lineageTag: db78c520-f857-4564-ac02-fd32ad178877
+		summarizeBy: sum
+		sourceColumn: Année
+
+		annotation SummarizationSetBy = Automatic
+
+	column Indicateur
+		dataType: string
+		lineageTag: a3819550-ef21-4ac1-9fcb-e216742d1639
+		summarizeBy: none
+		sourceColumn: Indicateur
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Type de contrat'
+		dataType: string
+		lineageTag: c35e1fae-82c1-45c5-bb99-3fdad8250875
+		summarizeBy: none
+		sourceColumn: Type de contrat
+
+		annotation SummarizationSetBy = Automatic
+
+	column Collège
+		dataType: string
+		lineageTag: b486c5b4-bc60-46a6-aaea-7d007388ad63
+		summarizeBy: none
+		sourceColumn: Collège
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sous-catégorie collège'
+		dataType: string
+		lineageTag: 1714286b-4350-4191-a567-2745c68c78ed
+		summarizeBy: none
+		sourceColumn: Sous-catégorie collège
+
+		annotation SummarizationSetBy = Automatic
+
+	column Genre
+		dataType: string
+		lineageTag: b37a739a-daef-4040-acaa-a12d19a2bd8a
+		summarizeBy: none
+		sourceColumn: Genre
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Plage M3E'
+		dataType: string
+		lineageTag: 03ddda85-b178-4821-a5cd-fbf76523ab01
+		summarizeBy: none
+		sourceColumn: Plage M3E
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nationalité
+		dataType: string
+		lineageTag: 5965e7dd-8763-4bed-8657-96514166a657
+		summarizeBy: none
+		sourceColumn: Nationalité
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ancienneté
+		dataType: string
+		lineageTag: 4edfc5e1-5e95-40e1-a9ad-7376fc90e541
+		summarizeBy: none
+		sourceColumn: Ancienneté
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tranche d''âge'
+		dataType: string
+		lineageTag: 9a49c24c-d936-45c4-ae9d-c2ecd73268f2
+		summarizeBy: none
+		sourceColumn: Tranche d'âge
+
+		annotation SummarizationSetBy = Automatic
+
+	column Valeur
+		dataType: int64
+		formatString: 0
+		lineageTag: 21fc1327-92e6-420f-9ceb-ed801054866b
+		summarizeBy: sum
+		sourceColumn: Valeur
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Chapitre du bilan social'
+		dataType: string
+		lineageTag: ac1dfb81-e931-4618-a36b-a94fdd17b232
+		summarizeBy: none
+		sourceColumn: Chapitre du bilan social
+
+		annotation SummarizationSetBy = Automatic
+
+	partition bilan-social-d-edf-sa-effectifs-et-repartition-par-age-statut-et-sexe = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\djlye\Documents\bilan-social-d-edf-sa-effectifs-et-repartition-par-age-statut-et-sexe.xlsx"), null, true),
+				    Feuil1_Sheet = Source{[Item="Feuil1",Kind="Sheet"]}[Data],
+				    #"En-têtes promus" = Table.PromoteHeaders(Feuil1_Sheet, [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Année", Int64.Type}, {"Indicateur", type text}, {"Type de contrat", type text}, {"Collège", type text}, {"Sous-catégorie collège", type text}, {"Genre", type text}, {"Plage M3E", type text}, {"Nationalité", type text}, {"Ancienneté", type text}, {"Tranche d'âge", type text}, {"Valeur", Int64.Type}, {"Chapitre du bilan social", type text}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

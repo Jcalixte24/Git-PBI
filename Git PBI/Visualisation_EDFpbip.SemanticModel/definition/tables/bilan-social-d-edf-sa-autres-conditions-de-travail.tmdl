@@ -1,0 +1,76 @@
+table bilan-social-d-edf-sa-autres-conditions-de-travail
+	lineageTag: f89ea0f8-20e9-498d-92f0-a27b3b113260
+
+	column Année
+		dataType: int64
+		formatString: 0
+		lineageTag: 68c373a4-57f8-415c-b5de-c67ef3ecbeb6
+		summarizeBy: sum
+		sourceColumn: Année
+
+		annotation SummarizationSetBy = Automatic
+
+	column Indicateur
+		dataType: string
+		lineageTag: 9881add9-9053-4fe4-a1e1-fef4a7cb6b27
+		summarizeBy: none
+		sourceColumn: Indicateur
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Type de contrat'
+		dataType: string
+		lineageTag: 773c34d0-33ab-4be6-b463-28c36255b6f9
+		summarizeBy: none
+		sourceColumn: Type de contrat
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tranche horaire'
+		dataType: string
+		lineageTag: 762d118f-1909-4546-b974-60411d716d4d
+		summarizeBy: none
+		sourceColumn: Tranche horaire
+
+		annotation SummarizationSetBy = Automatic
+
+	column Collège
+		dataType: string
+		lineageTag: bef40e8d-6e66-4646-a53f-97d128f4c3de
+		summarizeBy: none
+		sourceColumn: Collège
+
+		annotation SummarizationSetBy = Automatic
+
+	column Genre
+		dataType: string
+		lineageTag: 827842cb-c28d-47ee-bed0-4020e2c00ff8
+		summarizeBy: none
+		sourceColumn: Genre
+
+		annotation SummarizationSetBy = Automatic
+
+	column Valeur
+		dataType: int64
+		formatString: 0
+		lineageTag: ffe02397-0177-4ae4-b245-71d87be99376
+		summarizeBy: sum
+		sourceColumn: Valeur
+
+		annotation SummarizationSetBy = Automatic
+
+	partition bilan-social-d-edf-sa-autres-conditions-de-travail = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\djlye\Documents\bilan-social-d-edf-sa-autres-conditions-de-travail.xlsx"), null, true),
+				    Feuil1_Sheet = Source{[Item="Feuil1",Kind="Sheet"]}[Data],
+				    #"En-têtes promus" = Table.PromoteHeaders(Feuil1_Sheet, [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"Année", Int64.Type}, {"Indicateur", type text}, {"Type de contrat", type text}, {"Tranche horaire", type text}, {"Collège", type text}, {"Genre", type text}, {"Valeur", Int64.Type}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

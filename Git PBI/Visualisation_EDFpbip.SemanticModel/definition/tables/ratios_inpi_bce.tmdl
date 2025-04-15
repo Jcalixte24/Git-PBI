@@ -1,0 +1,213 @@
+table ratios_inpi_bce
+	lineageTag: 8488d5a5-20b8-46f1-8891-0204d483fe88
+
+	column siren
+		dataType: int64
+		formatString: 0
+		lineageTag: 5222e4d8-cfd1-479d-b335-764fd0639d1f
+		summarizeBy: sum
+		sourceColumn: siren
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_cloture_exercice
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 33194014-485f-4c3b-8173-ec8e07a370c5
+		summarizeBy: none
+		sourceColumn: date_cloture_exercice
+
+		variation Variation
+			isDefault
+			relationship: 34bf96b3-29a6-4791-b4e2-0fc39a81e441
+			defaultHierarchy: LocalDateTable_3934ca81-a5e2-47d9-a257-09425d02e643.'Hiérarchie de dates'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Chiffre_d_affaires
+		dataType: int64
+		formatString: 0
+		lineageTag: 16aa4e9e-21e7-4bb9-808f-79256e88e1fd
+		summarizeBy: sum
+		sourceColumn: Chiffre_d_affaires
+
+		annotation SummarizationSetBy = Automatic
+
+	column Marge_brute
+		dataType: int64
+		formatString: 0
+		lineageTag: cba3ae56-fff3-414b-bb3e-991c02455eee
+		summarizeBy: sum
+		sourceColumn: Marge_brute
+
+		annotation SummarizationSetBy = Automatic
+
+	column EBE
+		dataType: int64
+		formatString: 0
+		lineageTag: ba045b51-27a7-4f19-a195-a5f63427a05d
+		summarizeBy: sum
+		sourceColumn: EBE
+
+		annotation SummarizationSetBy = Automatic
+
+	column EBIT
+		dataType: int64
+		formatString: 0
+		lineageTag: 44574bf8-7aaa-408f-8b13-def2e20ada93
+		summarizeBy: sum
+		sourceColumn: EBIT
+
+		annotation SummarizationSetBy = Automatic
+
+	column Resultat_net
+		dataType: int64
+		formatString: 0
+		lineageTag: 199c1147-5cfd-4ef3-b62c-b5672edf24d1
+		summarizeBy: sum
+		sourceColumn: Resultat_net
+
+		annotation SummarizationSetBy = Automatic
+
+	column Taux_d_endettement
+		dataType: string
+		lineageTag: 40eea2f5-d3ff-408f-bc45-0bd32f0ae18d
+		summarizeBy: none
+		sourceColumn: Taux_d_endettement
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ratio_de_liquidite
+		dataType: string
+		lineageTag: 1d9d87ab-bb99-4224-8f67-1959cf3fef90
+		summarizeBy: none
+		sourceColumn: Ratio_de_liquidite
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ratio_de_vetuste
+		dataType: string
+		lineageTag: e65c4c39-57ce-47ce-9a4b-daee575133a8
+		summarizeBy: none
+		sourceColumn: Ratio_de_vetuste
+
+		annotation SummarizationSetBy = Automatic
+
+	column Autonomie_financiere
+		dataType: string
+		lineageTag: 846f383d-1abd-4c18-9193-814f0f1f03ba
+		summarizeBy: none
+		sourceColumn: Autonomie_financiere
+
+		annotation SummarizationSetBy = Automatic
+
+	column Poids_BFR_exploitation_sur_CA
+		dataType: string
+		lineageTag: 0d2f4eb8-c33f-44c2-a55d-6bc424221041
+		summarizeBy: none
+		sourceColumn: Poids_BFR_exploitation_sur_CA
+
+		annotation SummarizationSetBy = Automatic
+
+	column Couverture_des_interets
+		dataType: string
+		lineageTag: fbe7fa5d-b515-4d8a-a6f9-332a5ac9616c
+		summarizeBy: none
+		sourceColumn: Couverture_des_interets
+
+		annotation SummarizationSetBy = Automatic
+
+	column CAF_sur_CA
+		dataType: string
+		lineageTag: c4824dad-a8bc-40f8-bc62-130d772e60f0
+		summarizeBy: none
+		sourceColumn: CAF_sur_CA
+
+		annotation SummarizationSetBy = Automatic
+
+	column Capacite_de_remboursement
+		dataType: string
+		lineageTag: d88c6660-7b02-438d-abed-40ba83be2e88
+		summarizeBy: none
+		sourceColumn: Capacite_de_remboursement
+
+		annotation SummarizationSetBy = Automatic
+
+	column Marge_EBE
+		dataType: string
+		lineageTag: 2c746431-7f38-43f4-b310-04179447f6b5
+		summarizeBy: none
+		sourceColumn: Marge_EBE
+
+		annotation SummarizationSetBy = Automatic
+
+	column Resultat_courant_avant_impots_sur_CA
+		dataType: string
+		lineageTag: 2a06d97e-32f4-4223-8389-0e44278fb102
+		summarizeBy: none
+		sourceColumn: Resultat_courant_avant_impots_sur_CA
+
+		annotation SummarizationSetBy = Automatic
+
+	column Poids_BFR_exploitation_sur_CA_jours
+		dataType: string
+		lineageTag: f66edfe3-1b34-42c6-92d9-25d47fc48d67
+		summarizeBy: none
+		sourceColumn: Poids_BFR_exploitation_sur_CA_jours
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rotation_des_stocks_jours
+		dataType: string
+		lineageTag: 18768bec-03f6-453c-8505-f2ba68208580
+		summarizeBy: none
+		sourceColumn: Rotation_des_stocks_jours
+
+		annotation SummarizationSetBy = Automatic
+
+	column Credit_clients_Jours
+		dataType: string
+		lineageTag: 320a537e-c16a-4435-8cf7-d7e3c923c62f
+		summarizeBy: none
+		sourceColumn: Credit_clients_Jours
+
+		annotation SummarizationSetBy = Automatic
+
+	column Credit_fournisseurs_Jours
+		dataType: string
+		lineageTag: 8e5b8ef9-d7e1-43a5-8587-1b178266b9f8
+		summarizeBy: none
+		sourceColumn: Credit_fournisseurs_Jours
+
+		annotation SummarizationSetBy = Automatic
+
+	column type_bilan
+		dataType: string
+		lineageTag: 98fdb02f-d9ee-484b-b646-c8c846e1b5ad
+		summarizeBy: none
+		sourceColumn: type_bilan
+
+		annotation SummarizationSetBy = Automatic
+
+	column confidentiality
+		dataType: string
+		lineageTag: 3894f043-a113-4bfa-9b75-4cf7ccf72280
+		summarizeBy: none
+		sourceColumn: confidentiality
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ratios_inpi_bce = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\djlye\Downloads\ratios_inpi_bce.csv"),[Delimiter=";", Columns=23, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"En-têtes promus" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"siren", Int64.Type}, {"date_cloture_exercice", type date}, {"Chiffre_d_affaires", Int64.Type}, {"Marge_brute", Int64.Type}, {"EBE", Int64.Type}, {"EBIT", Int64.Type}, {"Resultat_net", Int64.Type}, {"Taux_d_endettement", type text}, {"Ratio_de_liquidite", type text}, {"Ratio_de_vetuste", type text}, {"Autonomie_financiere", type text}, {"Poids_BFR_exploitation_sur_CA", type text}, {"Couverture_des_interets", type text}, {"CAF_sur_CA", type text}, {"Capacite_de_remboursement", type text}, {"Marge_EBE", type text}, {"Resultat_courant_avant_impots_sur_CA", type text}, {"Poids_BFR_exploitation_sur_CA_jours", type text}, {"Rotation_des_stocks_jours", type text}, {"Credit_clients_Jours", type text}, {"Credit_fournisseurs_Jours", type text}, {"type_bilan", type text}, {"confidentiality", type text}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_ResultType = Table
+

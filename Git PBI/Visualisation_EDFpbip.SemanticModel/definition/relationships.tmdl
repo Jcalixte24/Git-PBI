@@ -1,0 +1,5 @@
+relationship 34bf96b3-29a6-4791-b4e2-0fc39a81e441
+	joinOnDateBehavior: datePartOnly
+	fromColumn: ratios_inpi_bce.date_cloture_exercice
+	toColumn: LocalDateTable_3934ca81-a5e2-47d9-a257-09425d02e643.Date
+
